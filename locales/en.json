@@ -34,5 +34,7 @@
   "temp_banner_saved": "Credentials saved!",
   "fee_text": "To reward the authors of this Rovas Connector Plugin, a fee equal to 3% of the amount you earn from reports created by the plugin will be levied on those earnings.",
   "company_work_checkbox": "I am not paid for my work on OpenStreetMap by a company",
-  "status_company_work_error": "This plugin is not allowed for use if you are paid by a company for work performed on iD."
-} 
+  "status_company_work_error": "This plugin is not allowed for use if you are paid by a company for work performed on iD.",
+  "manual_hours_label": "Edit time (hours):",
+  "manual_minutes_label": "Edit time (minutes):"
+}

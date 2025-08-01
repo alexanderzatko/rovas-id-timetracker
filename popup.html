@@ -27,16 +27,15 @@
       font-weight: bold;
       font-size: 14px;
     }
-    input[type="text"] {
-      width: calc(100% - 20px); /* Adjust width considering padding */
+    input[type="text"],
+    input[type="number"],
+    input[type="password"] {
+      width: calc(100% - 20px);
       padding: 8px 10px;
       margin-bottom: 15px;
       border: 1px solid #ccc;
       border-radius: 4px;
-      box-sizing: border-box; /* Include padding and border in the element's total width and height */
-    }
-    input[type=password] {
-      width: 100%;
+      box-sizing: border-box;
     }
     button {
       background-color: #28a745;
@@ -52,53 +51,51 @@
     button:hover {
       background-color: #218838;
     }
-    #rovasPageBtn { /* Specific ID for the "Open Rovas" button */
-      background-color: #007bff; /* Blue for the Rovas page button */
+    #rovasPageBtn {
+      background-color: #007bff;
     }
     #rovasPageBtn:hover {
       background-color: #0056b3;
     }
-    #saveBtn { /* Specific ID for the Save button */
-      background-color: #6c757d; /* Gray for save button */
+    #saveBtn {
+      background-color: #6c757d;
     }
     #saveBtn:hover {
       background-color: #5a6268;
     }
-    #status {
+    #status,
+    #configStatus {
       margin-top: 10px;
       font-size: 12px;
-      color: #666;
     }
-    #configStatus { /* For displaying save/load status of keys */
-      margin-top: 10px;
-      font-size: 12px;
+    #configStatus {
       color: green;
     }
-	.license-text { /* New style for the license text */
-        font-size: 11px;
-        color: #555;
-        margin-bottom: 15px;
-        line-height: 1.6;
-        background-color: #f0f0f0;
-        border: 1px solid #ddd;
-        padding: 8px;
-        border-radius: 4px;
+    .license-text {
+      font-size: 11px;
+      color: #555;
+      margin-bottom: 15px;
+      line-height: 1.6;
+      background-color: #f0f0f0;
+      border: 1px solid #ddd;
+      padding: 8px;
+      border-radius: 4px;
     }
-    .checkbox-container { /* New style for the checkbox container */
-        margin-bottom: 12px;
-        display: flex;
-        align-items: flex-start; /* Aligns text and checkbox at the top */
-        font-size: 10px;
-        color: #444;
+    .checkbox-container {
+      margin-bottom: 12px;
+      display: flex;
+      align-items: flex-start;
+      font-size: 10px;
+      color: #444;
     }
     .checkbox-container input[type="checkbox"] {
-        margin-top: 3px; /* Aligns the checkbox better with text */
-        margin-right: 8px;
-        flex-shrink: 0; /* Prevents the checkbox from shrinking */
+      margin-top: 3px;
+      margin-right: 8px;
+      flex-shrink: 0;
     }
-    #saveBtn:disabled { /* Style for disabled save button */
-        opacity: 0.6;
-        cursor: not-allowed;
+    #saveBtn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
     }
   </style>
 </head>
@@ -109,8 +106,8 @@
   <button id="rovasPageBtn"></button>
 
   <div id="tempBanner" style="display:none; background: #fff3cd; color: #856404; border: 1px solid #ffeeba; border-radius: 4px; padding: 8px; margin-bottom: 10px; font-size: 13px;">
-    <span id="tempBannerText"></span>
-  </div>
+    <span id="tempBannerText"></span>
+  </div>
 
   <p class="license-text" id="feeText"></p>
 
@@ -121,17 +118,25 @@
   <input type="password" id="apiKey" placeholder="">
   <label for="token" id="tokenLabel"></label>
   <input type="password" id="token" placeholder="">
-  
+
   <div class="checkbox-container">
     <input type="checkbox" id="companyWorkCheckbox">
     <label for="companyWorkCheckbox" id="companyWorkLabel"></label>
   </div>
-  
-    <button id="saveBtn" disabled></button>
+
+  <button id="saveBtn" disabled></button>
   <p id="configStatus"></p>
 
   <label for="langSelect" id="langLabel"></label>
   <select id="langSelect"></select>
+
+  <hr style="margin: 20px 0; border-color: #eee;">
+
+  <label for="manualHours" id="manualHoursLabel"></label>
+  <input type="number" id="manualHours" min="0" max="23" value="0">
+
+  <label for="manualMinutes" id="manualMinutesLabel"></label>
+  <input type="number" id="manualMinutes" min="0" max="59" value="0">
 
   <script src="popup.js"></script>
 </body>

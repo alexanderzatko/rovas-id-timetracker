@@ -34,5 +34,7 @@
   "temp_banner_saved": "Credenziali salvate!",
   "fee_text": "Per ricompensare gli autori di questo plugin Rovas Connector, verrà applicata una commissione pari al 3% dell'importo guadagnato dai report creati dal plugin.",
   "company_work_checkbox": "Non sono pagato da un'azienda per il mio lavoro su OpenStreetMap.",
-  "status_company_work_error": "Non è permesso usare questo plugin se si è pagati da un'azienda per il lavoro effettuato su iD."
-} 
+  "status_company_work_error": "Non è permesso usare questo plugin se si è pagati da un'azienda per il lavoro effettuato su iD.",
+  "manual_hours_label": "Modifica tempo (ore):",
+  "manual_minutes_label": "Modifica tempo (minuti):"
+}
