@@ -55,7 +55,7 @@ function sendReportToRovas(durationMinutes) {
     comment: comment
   };
 
-  fetch("https://dev.rovas.app/api/report", {
+  fetch("https://rovas.app/api/report", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
