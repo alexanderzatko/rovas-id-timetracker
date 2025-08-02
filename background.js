@@ -1,4 +1,36 @@
 
+// background.js
+
+console.log("[ROVAS Background] Service Worker started.");
+
+// Listener to capture changeset ID by OSM API request
+chrome.webRequest.onCompleted.addListener(
+  function(details) {
+    const url = new URL(details.url);
+    const match = url.pathname.match(/\/changeset\/(\d+)\/(upload|close)/);
+
+    if (match && match[1]) {
+      const changesetId = match[1];
+      console.log(`%c[ROVAS Background] ID Changeset Found: ${changesetId} from request: ${details.url}`, 'color: cyan; font-weight: bold;');
+
+      chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+        if (
+          tabs[0] &&
+          (tabs[0].url.startsWith("https://www.openstreetmap.org/edit") ||
+           tabs[0].url.startsWith("https://rapideditor.org/edit"))
+        ) {
+          chrome.tabs.sendMessage(tabs[0].id, {
+            type: "CHANGESET_ID_DETECTED",
+            changesetId: changesetId
+          });
+        }
+      });
+    }
+  },
+  { urls: ["https://api.openstreetmap.org/api/0.6/changeset/*"] }
+);
+
+// Fallback calculation
 function calculateDuration() {
   const start = localStorage.getItem("sessionStart");
   const end = Date.now();
@@ -34,11 +66,11 @@ function sendReportToRovas(durationMinutes) {
   })
   .then(response => response.json())
   .then(data => {
-    console.log("✅ Report submitted:", data);
+    console.log("Report submitted:", data);
     chrome.storage.local.remove("manualDuration");
   })
   .catch(error => {
-    console.error("❌ Error submitting report:", error);
+    console.error("Error submitting report:", error);
   });
 }
 
@@ -49,11 +81,3 @@ function handleSubmitReport() {
     sendReportToRovas(duration);
   });
 }
-
-// Optional: example trigger (e.g., message from popup)
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  if (message.action === "submit_report") {
-    handleSubmitReport();
-    sendResponse({ status: "started" });
-  }
-});
